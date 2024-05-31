@@ -7,7 +7,7 @@ from slugify import slugify
 def clone(profile: gr.OAuthProfile, oauth_token: gr.OAuthToken, repo_git, repo_hf):
     folder = uuid.uuid1()
     cloned_repo = Repo.clone_from(repo_git, folder)
-    print({profile.username}/{slugify(repo_hf)})
+    print(f"{profile.username}/{slugify(repo_hf)}")
     print(cloned_repo)
     #Upload to HF
     api = HfApi(token=oauth_token)
