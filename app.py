@@ -2,7 +2,7 @@ import gradio as gr
 from huggingface_hub import HfApi
 from git import Repo
 import uuid 
-  
+from slugify import slugify
 
 def clone(profile: gr.OAuthProfile, oauth_token: gr.OAuthToken, repo_git, repo_hf):
     folder = uuid.uuid1()
@@ -11,10 +11,10 @@ def clone(profile: gr.OAuthProfile, oauth_token: gr.OAuthToken, repo_git, repo_h
     api = HfApi(token=oauth_token)
     api.upload_folder(
         folder_path=cloned_repo,
-        repo_id={profile.username}/{repo_hf},
+        repo_id={profile.username}/{slugify(repo_hf)},
         repo_type="space",
     )
-    return f"https://huggingface.co/{profile.username}/{repo_hf}"
+    return f"https://huggingface.co/{profile.username}/{slugify(repo_hf)}"
 
 
 with gr.Blocks() as demo:
