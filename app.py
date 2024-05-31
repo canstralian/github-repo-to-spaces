@@ -11,7 +11,7 @@ def clone(profile: gr.OAuthProfile, oauth_token: gr.OAuthToken, repo_git, repo_h
     api = HfApi(token=oauth_token)
     api.upload_folder(
         folder_path=cloned_repo,
-        repo_id={profile.username}/{slugify(repo_hf)},
+        repo_id=f"{profile.username}/{slugify(repo_hf)}",
         repo_type="space",
     )
     return f"https://huggingface.co/{profile.username}/{slugify(repo_hf)}"
