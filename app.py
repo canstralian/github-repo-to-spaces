@@ -29,11 +29,11 @@ with gr.Blocks() as demo:
         with gr.Column():
             repo_git = gr.Textbox(label="GitHub Repository")
             repo_hf = gr.Textbox(label="Hugging Face Space name")
-            sdk_type = gr.Radio(['gradio', 'streamlit', 'docker', 'static'], label="SDK Type"),
+            sdk_choices = gr.Radio(["gradio", "streamlit", "docker", "static"], label="SDK Choices")
         with gr.Column():
             output = gr.Textbox(label="Output repo")
     btn = gr.Button("Bring over!")
-    btn.click(fn=clone, inputs=[repo_git, repo_hf, sdk_type], outputs=output)
+    btn.click(fn=clone, inputs=[repo_git, repo_hf, sdk_choices], outputs=output)
 
 if __name__ == "__main__":
     demo.launch()
