@@ -7,12 +7,12 @@ from slugify import slugify
 def clone(profile: gr.OAuthProfile, oauth_token: gr.OAuthToken, repo_git, repo_hf):
     folder = str(uuid.uuid4())
     cloned_repo = Repo.clone_from(repo_git, folder)
-    print(f"{profile.username}/{slugify(repo_hf)}")
-    print(cloned_repo)
+
     #Upload to HF
     api = HfApi(token=oauth_token)
     api.create_repo(
-        f"{profile.username}/{slugify(repo_hf)}"
+        f"{profile.username}/{slugify(repo_hf)}",
+        repo_type="space",
     )
     api.upload_folder(
         folder_path=folder,
