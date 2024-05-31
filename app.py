@@ -9,7 +9,7 @@ def clone(profile: gr.OAuthProfile, oauth_token: gr.OAuthToken, repo_git, repo_h
     cloned_repo = Repo.clone_from(repo_git, folder)
 
     #Upload to HF
-    api = HfApi(token=oauth_token)
+    api = HfApi(token=oauth_token.token)
     api.create_repo(
         f"{profile.username}/{slugify(repo_hf)}",
         repo_type="space",
