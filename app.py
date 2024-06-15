@@ -20,7 +20,7 @@ def clone(profile: gr.OAuthProfile, oauth_token: gr.OAuthToken, repo_git, repo_h
         repo_id=f"{profile.username}/{slugify(repo_hf)}",
         repo_type="space",
     )
-    return f"https://huggingface.co/{profile.username}/{slugify(repo_hf)}"
+    return f"https://huggingface.co/spaces/{profile.username}/{slugify(repo_hf)}"
 
 
 with gr.Blocks() as demo:
